@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let defaults = UserDefaults.standard
+        
+        tipControl.selectedSegmentIndex = defaults.integer(forKey: "DefaultTipValue")
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +39,7 @@ class ViewController: UIViewController {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
+        
         
         tipLabel.text = String(format:"$%.2f", tip)
         totalLabel.text = String(format:"$%.2f", total)
